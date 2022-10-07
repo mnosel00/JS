@@ -29,49 +29,43 @@ addNewInput.addEventListener("click", () => {
 });
 
 // WYKONANIE DZIAŁAŃ PO NACISNIĘCIU BUTTONA
-// calculate.addEventListener("click", () => {
-//   p.remove();
-//   const values = document.getElementsByTagName("input");
-
-//   for (let inp of values) {
-//     if (inp.value == "") {
-//       inp.value = 0;
-//     }
-//     numberArray.push(inp.value);
-//     sum = sum + parseInt(inp.value);
-//   }
-
-//   average = sum / values.length;
-//   max = numberArray.reduce((a, b) => {
-//     return Math.max(a, b);
-//   });
-//   min = numberArray.reduce((a, b) => {
-//     return Math.min(a, b);
-//   });
-
-//   const divResult = document.createElement("div");
-//   document.body.appendChild(divResult);
-
-//   divResult.appendChild(p);
-
-//   p.innerHTML =
-//     "Sum = " +
-//     sum +
-//     ", " +
-//     " Average = " +
-//     average +
-//     ", " +
-//     "Max Value = " +
-//     max +
-//     ", " +
-//     " Min Value = " +
-//     min;
-
-//   sum = 0;
-//   average = 0;
-//   max = 0;
-//   min = 0;
-// });
+calculate.addEventListener("click", () => {
+  p.remove();
+  const values = document.getElementsByTagName("input");
+  for (let inp of values) {
+    if (inp.value == "") {
+      inp.value = 0;
+    }
+    numberArray.push(inp.value);
+    sum = sum + parseInt(inp.value);
+  }
+  average = sum / values.length;
+  max = numberArray.reduce((a, b) => {
+    return Math.max(a, b);
+  });
+  min = numberArray.reduce((a, b) => {
+    return Math.min(a, b);
+  });
+  const divResult = document.createElement("div");
+  document.body.appendChild(divResult);
+  divResult.appendChild(p);
+  p.innerHTML =
+    "Sum = " +
+    sum +
+    ", " +
+    " Average = " +
+    average +
+    ", " +
+    "Max Value = " +
+    max +
+    ", " +
+    " Min Value = " +
+    min;
+  sum = 0;
+  average = 0;
+  max = 0;
+  min = 0;
+});
 
 // WYKONYWANIE ZADAŃ LIVE
 const liveValues = document.getElementsByTagName("input");

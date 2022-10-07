@@ -125,7 +125,7 @@ const buttonPressed = (id) => {
   const inpustToDelete = document.getElementsByClassName(buttonId);
   var requierdElement = inpustToDelete[0];
 
-  if (buttonToDelete?.id != "addNewInput") {
+  if (buttonToDelete?.innerHTML == "Delete") {
     requierdElement?.remove();
     buttonToDelete?.remove();
   }

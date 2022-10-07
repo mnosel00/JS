@@ -9,7 +9,7 @@ var liveNumberArray = [];
 
 const addNewInput = document.querySelector("#addNewInput");
 const calculate = document.querySelector("#calculate");
-
+var liveValues = document.getElementsByTagName("input");
 const box = document.getElementById("box");
 
 //DODAWANIE NOWYCH PÓL
@@ -26,6 +26,8 @@ addNewInput.addEventListener("click", () => {
   box.appendChild(newDeleteButton);
   newDeleteButton.setAttribute("id", "deleteInput" + inputIdNumber);
   newDeleteButton.textContent = "Delete";
+
+  liveValues = liveValues + document.getElementsByTagName("input");
 });
 
 // WYKONANIE DZIAŁAŃ PO NACISNIĘCIU BUTTONA
@@ -71,7 +73,7 @@ calculate.addEventListener("click", () => {
 });
 
 // WYKONYWANIE ZADAŃ LIVE
-const liveValues = document.getElementsByTagName("input");
+
 for (let liveValue of liveValues) {
   liveValue.addEventListener("change", () => {
     p.remove();

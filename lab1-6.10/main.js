@@ -39,13 +39,16 @@ calculate.addEventListener("click", () => {
     numberArray.push(inp.value);
     sum = sum + parseInt(inp.value);
   }
+
   average = sum / values.length;
+
   max = numberArray.reduce((a, b) => {
     return Math.max(a, b);
   });
   min = numberArray.reduce((a, b) => {
     return Math.min(a, b);
   });
+
   const divResult = document.createElement("div");
   document.body.appendChild(divResult);
   divResult.appendChild(p);
@@ -61,10 +64,10 @@ calculate.addEventListener("click", () => {
     ", " +
     " Min Value = " +
     min;
+
   sum = 0;
   average = 0;
-  max = 0;
-  min = 0;
+  numberArray = [];
 });
 
 // WYKONYWANIE ZADAŃ LIVE
@@ -73,7 +76,6 @@ for (let liveValue of liveValues) {
   liveValue.addEventListener("change", () => {
     p.remove();
     const values = document.getElementsByTagName("input");
-
     for (let inp of values) {
       if (inp.value == "") {
         inp.value = 0;
@@ -83,6 +85,7 @@ for (let liveValue of liveValues) {
     }
 
     average = sum / values.length;
+
     max = numberArray.reduce((a, b) => {
       return Math.max(a, b);
     });
@@ -92,9 +95,7 @@ for (let liveValue of liveValues) {
 
     const divResult = document.createElement("div");
     document.body.appendChild(divResult);
-
     divResult.appendChild(p);
-
     p.innerHTML =
       "Sum = " +
       sum +
@@ -110,8 +111,7 @@ for (let liveValue of liveValues) {
 
     sum = 0;
     average = 0;
-    max = 0;
-    min = 0;
+    numberArray = [];
   });
 }
 

@@ -1,10 +1,10 @@
-/* #slider {
+#slider {
     width: 600px;
     height: 400px;
     margin: 100px auto 0 auto;
     overflow: hidden;
 }
-#slider .slides {
+/* #slider .slides {
     display: flex;
     animation-name: pociag-w-lewo;
     animation-duration: 4s;

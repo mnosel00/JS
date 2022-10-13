@@ -1,33 +1,28 @@
-// // notatnik z zajęć
-// const main = document.querySelector("main");
-
-// const timeoutRef = setTimeout(() => {
-//   main.innerHTML = "From setTimeout";
-// }, 2000);
-
-// let licznik = 0;
-
-// const intervalRef = setInterval(() => {
-//   main.innerHTML = "From interval" + licznik++;
-// }, 4000);
-
-// // kasujemy setInterval
-// clearInterval(intervalRef);
-
-// // kasujemy setTimeout
-// clearTimeout(intervalRef);
-
-// // window.requestAnimationFrame
-
 const main = document.querySelector("main");
+const slider = document.querySelector(".slider");
 const slides = document.querySelector(".slides");
+let startPoint = 0;
+const time = 3000;
+const img = document.createElement("img");
 
 const photoArray = new Array();
-for (let index = 0; index < 7; index++) {
-  photoArray[index] = "http://picsum.photos/seed/picsum/600/400";
+photoArray[0] = "./img/img1.jpg";
+photoArray[1] = "./img/img2.jpg";
+photoArray[2] = "./img/img3.jpg";
+
+function start() {
+  img.src = photoArray[startPoint];
+  slides.appendChild(img);
+
+  if (startPoint < photoArray.length - 1) {
+    startPoint++;
+  } else {
+    startPoint = 0;
+  }
+
+  setTimeout("start()", time);
 }
 
-const img = document.createElement("img");
-for (let index = 0; index < photoArray.length; index++) {
-  slides.appendChild(img);
-}
+window.addEventListener("load", () => {
+  start();
+});

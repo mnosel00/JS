@@ -1,28 +1,31 @@
-const main = document.querySelector("main");
-const slider = document.querySelector(".slider");
-const slides = document.querySelector(".slides");
-let startPoint = 0;
-const time = 3000;
-const img = document.createElement("img");
-
 const photoArray = new Array();
 photoArray[0] = "./img/img1.jpg";
 photoArray[1] = "./img/img2.jpg";
 photoArray[2] = "./img/img3.jpg";
 
-function start() {
-  img.src = photoArray[startPoint];
-  slides.appendChild(img);
+const slider = document.querySelector(".slider");
 
-  if (startPoint < photoArray.length - 1) {
-    startPoint++;
-  } else {
-    startPoint = 0;
-  }
+for (let index = 0; index < photoArray.length; index++) {
+  const slide = document.createElement("div");
+  slide.classList.add("slide");
 
-  setTimeout("start()", time);
+  const img = document.createElement("img");
+  img.src = photoArray[index];
+
+  slider.appendChild(slide);
+  slide.appendChild(img);
 }
 
-window.addEventListener("load", () => {
-  start();
+const buttonNext = document.createElement("button");
+buttonNext.classList.add("btn", "btn-next");
+
+const buttonBack = document.createElement("button");
+buttonBack.classList.add("btn", "btn-back");
+
+slider.appendChild(buttonNext);
+slider.appendChild(buttonBack);
+
+const slides = document.querySelectorAll(".slide");
+slides.forEach((element, index) => {
+  element.style.transform = `translateX(${index * 100}%)`;
 });

@@ -4,6 +4,7 @@ photoArray[1] = "./img/img2.jpg";
 photoArray[2] = "./img/img3.jpg";
 
 let slideNumber = 0;
+let isMouseOver = false;
 
 const slider = document.querySelector(".slider");
 
@@ -59,8 +60,27 @@ buttonBack.addEventListener("click", () => {
   });
 });
 
+function autoChange() {
+  console.log("autoChnage start");
+  buttonNext.click();
+  checkMouseOver();
+}
+
+function checkMouseOver() {
+  if (!isMouseOver) {
+    setTimeout("autoChange()", 5000);
+  }
+}
+
+slider.addEventListener("mouseover", () => {
+  isMouseOver = true;
+  console.log(isMouseOver);
+});
+
 slider.addEventListener("mouseleave", () => {
-  setTimeout(() => {
-    buttonNext.click();
-  }, "100");
+  isMouseOver = false;
+
+  console.log(isMouseOver);
+
+  setTimeout("autoChange()", 5000);
 });

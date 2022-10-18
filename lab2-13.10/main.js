@@ -11,13 +11,38 @@ const slider = document.querySelector(".slider");
 for (let index = 0; index < photoArray.length; index++) {
   const slide = document.createElement("div");
   slide.classList.add("slide");
+  slider.appendChild(slide);
 
   const img = document.createElement("img");
   img.src = photoArray[index];
-
-  slider.appendChild(slide);
   slide.appendChild(img);
 }
+
+for (let index = 0; index < photoArray.length; index++) {
+  const btn = document.createElement("button");
+  btn.classList.add(
+    "btn",
+    "changePictureBtn",
+    `btn-picture-${index + 1}`,
+    `${index + 1}`
+  );
+
+  slider.appendChild(btn);
+}
+
+const btns = document.querySelectorAll(".changePictureBtn");
+btns[0].addEventListener("click", () => {
+  slideNumber = -1;
+  buttonNext.click();
+});
+btns[1].addEventListener("click", () => {
+  slideNumber = 0;
+  buttonNext.click();
+});
+btns[2].addEventListener("click", () => {
+  slideNumber = 1;
+  buttonNext.click();
+});
 
 const buttonNext = document.createElement("button");
 buttonNext.classList.add("btn", "btn-next");
@@ -61,9 +86,12 @@ buttonBack.addEventListener("click", () => {
 });
 
 function autoChange() {
-  console.log("autoChnage start");
-  buttonNext.click();
-  checkMouseOver();
+  if (isMouseOver) {
+  } else {
+    buttonNext.click();
+    console.log("auto Change start");
+    checkMouseOver();
+  }
 }
 
 function checkMouseOver() {
@@ -79,8 +107,6 @@ slider.addEventListener("mouseover", () => {
 
 slider.addEventListener("mouseleave", () => {
   isMouseOver = false;
-
   console.log(isMouseOver);
-
   setTimeout("autoChange()", 5000);
 });

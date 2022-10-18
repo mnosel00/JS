@@ -58,3 +58,9 @@ buttonBack.addEventListener("click", () => {
     element.style.transform = `translateX(${(index - slideNumber) * 100}%)`;
   });
 });
+
+slider.addEventListener("mouseleave", () => {
+  setTimeout(() => {
+    buttonNext.click();
+  }, "100");
+});

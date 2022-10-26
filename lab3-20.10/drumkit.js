@@ -6,17 +6,27 @@ const rad2 = rad[1];
 const rad3 = rad[2];
 const rad4 = rad[3];
 
+let allSounds = [];
 let soundArray1 = [];
 let soundArray2 = [];
 let soundArray3 = [];
 let soundArray4 = [];
 
 let buttons = document.querySelectorAll("button");
+const muzyka = document.querySelector("#muzyka");
 
 const btn1 = buttons[0];
 const btn2 = buttons[1];
 const btn3 = buttons[2];
 const btn4 = buttons[3];
+
+muzyka.addEventListener("click", () => {
+  allSounds.forEach((element, i) => {
+    setTimeout(() => {
+      playSound(element);
+    }, i * 500);
+  });
+});
 
 buttons.forEach((element) => {
   element.addEventListener("click", () => {
@@ -49,6 +59,7 @@ buttons.forEach((element) => {
 });
 
 function saveSound(key) {
+  allSounds.push(key);
   if (rad1.checked) {
     soundArray1.push(key);
   } else if (rad2.checked) {

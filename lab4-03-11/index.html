@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="note">
+      <form name="noteSend" action="" method="get">
+        <label for="title">Title: </label>
+        <input type="text" name="title" id="title" />
+        <br />
+        <label for="content">Content: </label>
+        <textarea name="content" id="content" cols="30" rows="10"></textarea>
+        <br />
+        <label for="noteColor">Note Color: </label>
+        <input type="text" name="noteColor" id="noteColor" />
+        <br />
+        <label for="pin">PIN: </label>
+        <input type="text" name="pin" id="pin" />
+        <br />
+        <label for="date">Date: </label>
+        <input type="date" name="date" id="date" />
+        <br />
+        <input type="submit" value="Submit" id="pass" />
+      </form>
+    </div>
+
+    <div class="displayNote">
+      <h2>Notes Table</h2>
+      <table>
+        <tr>
+          <th>Title</th>
+          <th>Content</th>
+          <th>Note Color</th>
+          <th>PIN</th>
+          <th>Date</th>
+        </tr>
+      </table>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -9,7 +9,7 @@
   </head>
   <body>
     <div class="note">
-      <form name="noteSend" action="" method="get">
+      <form name="noteSend" action="">
         <label for="title">Title: </label>
         <input type="text" name="title" id="title" />
         <br />
@@ -25,20 +25,24 @@
         <label for="date">Date: </label>
         <input type="date" name="date" id="date" />
         <br />
-        <input type="submit" value="Submit" id="pass" />
+        <input type="button" value="Submit" id="pass" />
       </form>
     </div>
 
     <div class="displayNote">
       <h2>Notes Table</h2>
       <table>
-        <tr>
-          <th>Title</th>
-          <th>Content</th>
-          <th>Note Color</th>
-          <th>PIN</th>
-          <th>Date</th>
-        </tr>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Note Color</th>
+            <th>PIN</th>
+            <th>Date</th>
+            <th>Options</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
       </table>
     </div>
     <script src="main.js"></script>

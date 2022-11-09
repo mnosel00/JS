@@ -10,8 +10,11 @@ class Note {
 const tbody = document.querySelector("tbody");
 window.addEventListener("load", displayLocalStorage);
 
-let id;
-let key;
+const title = document.querySelector("#title");
+const content = document.querySelector("#content");
+const noteColor = document.querySelector("#noteColor");
+const PIN = document.querySelector("#pin");
+const date = document.querySelector("#date");
 
 function displayLocalStorage() {
   const allLocalStorageKeys = Object.keys(localStorage);
@@ -33,17 +36,20 @@ function displayLocalStorage() {
     const th = document.createElement("th");
 
     const removeButton = document.createElement("button");
-    removeButton.setAttribute("class", "removeButton");
+    removeButton.setAttribute("class", `removeButton ${id} ${key}`);
     removeButton.innerHTML = "Remove";
     th.appendChild(removeButton);
 
     const editButton = document.createElement("button");
-    editButton.setAttribute("class", "editButton");
+    editButton.setAttribute("class", `editButton ${id} ${key}`);
     editButton.innerHTML = "Edit";
     th.appendChild(editButton);
 
     tr.appendChild(th);
   });
+
+  deleteAfterButtonClick();
+  editAfterButtonClick();
 }
 
 function displayFreshlyCreated(key) {
@@ -62,25 +68,25 @@ function displayFreshlyCreated(key) {
   const th = document.createElement("th");
 
   const removeButton = document.createElement("button");
-  removeButton.setAttribute("class", "removeButton");
+  removeButton.setAttribute(
+    "class",
+    `removeButton ${localStorage.length} ${key}`
+  );
   removeButton.innerHTML = "Remove";
   th.appendChild(removeButton);
 
   const editButton = document.createElement("button");
-  editButton.setAttribute("class", "editButton");
+  editButton.setAttribute("class", `editButton ${localStorage.length} ${key}`);
   editButton.innerHTML = "Edit";
   th.appendChild(editButton);
 
   tr.appendChild(th);
+
+  deleteAfterButtonClick();
+  editAfterButtonClick();
 }
 
 function createNoteObject() {
-  const title = document.querySelector("#title");
-  const content = document.querySelector("#content");
-  const noteColor = document.querySelector("#noteColor");
-  const PIN = document.querySelector("#pin");
-  const date = document.querySelector("#date");
-
   let note = new Note(
     title.value,
     content.value,
@@ -89,23 +95,68 @@ function createNoteObject() {
     date.value
   );
 
-  const id = Date.now();
-  localStorage.setItem(id, JSON.stringify(note));
-  displayFreshlyCreated(id);
+  const key = Date.now();
+  localStorage.setItem(key, JSON.stringify(note));
+  displayFreshlyCreated(key);
 }
 
 function removeNoteFromLocalStorage(key, id) {
-  // localStorage.removeItem(key);
-  // document.getElementById(`${id}`).remove();
+  localStorage.removeItem(key);
+  document.getElementById(`${id}`).remove();
 }
 
-function editExistingNote() {}
+function editNote(key, id) {
+  const button = document.querySelector("#edit");
+  button.disabled = false;
+  const noteObject = JSON.parse(localStorage.getItem(key));
+
+  title.value = noteObject.title;
+  content.value = noteObject.content;
+  noteColor.value = noteObject.noteColor;
+  PIN.value = noteObject.PIN;
+  date.value = noteObject.date;
+
+  button.addEventListener("click", () => {
+    let note = new Note(
+      title.value,
+      content.value,
+      noteColor.value,
+      PIN.value,
+      date.value
+    );
+
+    localStorage.setItem(key, JSON.stringify(note));
+    button.disabled = true;
+    window.location.reload();
+  });
+}
 
 const button = document.querySelector("#pass");
 button.addEventListener("click", createNoteObject);
 
-const removeButton = document.querySelector(".removeButton");
-removeButton.addEventListener("click", removeNoteFromLocalStorage);
+function editAfterButtonClick() {
+  let editButtonClass = document.getElementsByClassName("editButton");
 
-const editButton = document.querySelector(".editButton");
-editButton.addEventListener("click", editExistingNote);
+  editButtonClass = [...editButtonClass];
+  for (let i = 0; i < editButtonClass.length; i++) {
+    editButtonClass[i].addEventListener("click", () => {
+      editNote(
+        editButtonClass[i].classList[2],
+        editButtonClass[i].classList[1]
+      );
+    });
+  }
+}
+
+function deleteAfterButtonClick() {
+  let removeButtonsClass = document.getElementsByClassName("removeButton");
+  removeButtonsClass = [...removeButtonsClass];
+  for (let i = 0; i < removeButtonsClass.length; i++) {
+    removeButtonsClass[i].addEventListener("click", () => {
+      removeNoteFromLocalStorage(
+        removeButtonsClass[i].classList[2],
+        removeButtonsClass[i].classList[1]
+      );
+    });
+  }
+}

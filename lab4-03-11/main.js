@@ -16,13 +16,27 @@ const noteColor = document.querySelector("#noteColor");
 const PIN = document.querySelector("#pin");
 const date = document.querySelector("#date");
 
+// function sort() {
+//   const allLocalStorageKeys = Object.keys(localStorage);
+
+//   let newArray = [];
+//   allLocalStorageKeys.forEach((key, i) => {
+//     const noteObject = JSON.parse(localStorage.getItem(key));
+
+//     newArray[i] = noteObject;
+//   });
+
+//   console.log(newArray);
+
+//   newArray.sort((a, b) => a.PIN - b.PIN);
+// }
+
 function displayLocalStorage() {
   const allLocalStorageKeys = Object.keys(localStorage);
 
   allLocalStorageKeys.forEach((key, id) => {
     id++;
     const noteObject = JSON.parse(localStorage.getItem(key));
-
     const tr = document.createElement("tr");
     tr.setAttribute("id", `${id}`);
     tbody.appendChild(tr);
@@ -50,6 +64,7 @@ function displayLocalStorage() {
 
   deleteAfterButtonClick();
   editAfterButtonClick();
+  // sort();
 }
 
 function displayFreshlyCreated(key) {

@@ -17,7 +17,7 @@
         <textarea name="content" id="content" cols="30" rows="10"></textarea>
         <br />
         <label for="noteColor">Note Color: </label>
-        <input type="text" name="noteColor" id="noteColor" />
+        <input type="color" name="noteColor" id="noteColor" />
         <br />
         <label for="pin">PIN: </label>
         <input type="text" name="pin" id="pin" />
@@ -25,6 +25,13 @@
         <label for="date">Date: </label>
         <input type="date" name="date" id="date" />
         <br />
+        <label for="fav">Mark as favourite: </label>
+        <input type="checkbox" name="fav" id="fav" />
+        <br />
+        <label for="tag">Tags: </label>
+        <input type="text" name="tag" id="tag" />
+        <br />
+
         <input type="button" value="Submit" id="pass" />
         <input type="button" value="Edit" id="edit" disabled />
       </form>
@@ -39,7 +46,9 @@
             <th>Content</th>
             <th>Note Color</th>
             <th>PIN</th>
+            <th>Favourite</th>
             <th>Date</th>
+            <th>Tags</th>
             <th>Options</th>
           </tr>
         </thead>

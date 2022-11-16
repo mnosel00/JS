@@ -1,10 +1,12 @@
 class Note {
-  constructor(title, content, noteColor, PIN, date) {
+  constructor(title, content, noteColor, PIN, fav, date, tags) {
     this.title = title;
     this.content = content;
     this.noteColor = noteColor;
     this.PIN = PIN;
+    this.fav = fav;
     this.date = date;
+    this.tags = tags;
   }
 }
 const tbody = document.querySelector("tbody");
@@ -14,36 +16,41 @@ const title = document.querySelector("#title");
 const content = document.querySelector("#content");
 const noteColor = document.querySelector("#noteColor");
 const PIN = document.querySelector("#pin");
+const fav = document.querySelector("#fav");
 const date = document.querySelector("#date");
+const tags = document.querySelector("#tag");
 
-// function sort() {
-//   const allLocalStorageKeys = Object.keys(localStorage);
+let newArray = [];
+let tagsArray = [];
 
-//   let newArray = [];
-//   allLocalStorageKeys.forEach((key, i) => {
-//     const noteObject = JSON.parse(localStorage.getItem(key));
+function sort() {
+  const allLocalStorageKeys = Object.keys(localStorage);
 
-//     newArray[i] = noteObject;
-//   });
+  allLocalStorageKeys.forEach((key, i) => {
+    const noteObject = JSON.parse(localStorage.getItem(key));
 
-//   console.log(newArray);
-
-//   newArray.sort((a, b) => a.PIN - b.PIN);
-// }
+    newArray[i] = noteObject;
+  });
+  newArray.sort((a, b) => Number(b.fav) - Number(a.fav));
+}
 
 function displayLocalStorage() {
+  sort();
   const allLocalStorageKeys = Object.keys(localStorage);
 
   allLocalStorageKeys.forEach((key, id) => {
     id++;
-    const noteObject = JSON.parse(localStorage.getItem(key));
+
+    let noteObject = [];
+    noteObject = newArray[id - 1];
+
     const tr = document.createElement("tr");
     tr.setAttribute("id", `${id}`);
     tbody.appendChild(tr);
 
-    Object.values(noteObject).forEach((element) => {
+    Object.values(noteObject).forEach((val) => {
       const th = document.createElement("th");
-      th.innerHTML = element;
+      th.innerHTML = val;
       tr.appendChild(th);
     });
 
@@ -64,7 +71,6 @@ function displayLocalStorage() {
 
   deleteAfterButtonClick();
   editAfterButtonClick();
-  // sort();
 }
 
 function displayFreshlyCreated(key) {
@@ -102,16 +108,20 @@ function displayFreshlyCreated(key) {
 }
 
 function createNoteObject() {
+  //console.log(fav.checked);
   let note = new Note(
     title.value,
     content.value,
     noteColor.value,
     PIN.value,
-    date.value
+    fav.checked,
+    date.value,
+    tags.value
   );
 
   const key = Date.now();
   localStorage.setItem(key, JSON.stringify(note));
+  window.location.reload();
   displayFreshlyCreated(key);
 }
 
@@ -122,6 +132,8 @@ function removeNoteFromLocalStorage(key, id) {
 
 function editNote(key, id) {
   const button = document.querySelector("#edit");
+  const button2 = document.querySelector("#pass");
+  button2.disabled = true;
   button.disabled = false;
   const noteObject = JSON.parse(localStorage.getItem(key));
 
@@ -129,6 +141,7 @@ function editNote(key, id) {
   content.value = noteObject.content;
   noteColor.value = noteObject.noteColor;
   PIN.value = noteObject.PIN;
+  fav.checked = noteObject.fav;
   date.value = noteObject.date;
 
   button.addEventListener("click", () => {
@@ -137,11 +150,13 @@ function editNote(key, id) {
       content.value,
       noteColor.value,
       PIN.value,
+      fav.checked,
       date.value
     );
 
     localStorage.setItem(key, JSON.stringify(note));
     button.disabled = true;
+    button2.disabled = false;
     window.location.reload();
   });
 }

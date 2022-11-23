@@ -19,19 +19,27 @@ const PIN = document.querySelector("#pin");
 const fav = document.querySelector("#fav");
 const date = document.querySelector("#date");
 const tags = document.querySelector("#tag");
-const input = document.querySelector("#filtr");
-
-input.addEventListener("keyup", filtrLocalStorage);
+const filtr = document.querySelector("#filtr");
+const keyword = document.querySelector("#keyword");
 
 let newArray = [];
 let tagsArray = [];
 
-function filtrLocalStorage() {
-  newArray.forEach((element) => {
+keyword.addEventListener("keyup", searchFilter);
+
+function searchFilter() {
+  const trs = document.querySelectorAll(".toHide");
+
+  trs.forEach((element) => {
+    element.style.display = "none";
     console.log(element);
   });
+  newArray.forEach((element) => {
+    if (element[filtr.value].includes(keyword.value)) {
+      console.log(element);
+    }
+  });
 }
-
 function sort() {
   const allLocalStorageKeys = Object.keys(localStorage);
 
@@ -55,6 +63,7 @@ function displayLocalStorage() {
 
     const tr = document.createElement("tr");
     tr.setAttribute("id", `${id}`);
+    tr.setAttribute("class", "toHide");
     tbody.appendChild(tr);
 
     Object.values(noteObject).forEach((val) => {
@@ -87,6 +96,7 @@ function displayFreshlyCreated(key) {
 
   const tr = document.createElement("tr");
   tr.setAttribute("id", `${localStorage.length}`);
+  tr.setAttribute("class", "toHide");
   tbody.appendChild(tr);
 
   Object.values(noteObject).forEach((element) => {

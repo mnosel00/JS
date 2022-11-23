@@ -32,14 +32,28 @@ function searchFilter() {
 
   trs.forEach((element) => {
     element.style.display = "none";
-    console.log(element);
   });
-  newArray.forEach((element) => {
-    if (element[filtr.value].includes(keyword.value)) {
-      console.log(element);
+
+  newArray.forEach((obj, i) => {
+    const tagsArrayToString = obj.tags.toString();
+    console.log(tagsArrayToString);
+
+    if (filtr.value === "tags") {
+      if (tagsArrayToString.includes(keyword.value)) {
+        trs[i].style.display = "";
+      }
+    } else {
+      if (obj[filtr.value].includes(keyword.value)) {
+        trs[i].style.display = "";
+      }
+    }
+
+    if (obj[filtr.value].includes(keyword.value)) {
+      trs[i].style.display = "";
     }
   });
 }
+
 function sort() {
   const allLocalStorageKeys = Object.keys(localStorage);
 

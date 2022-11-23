@@ -19,9 +19,18 @@ const PIN = document.querySelector("#pin");
 const fav = document.querySelector("#fav");
 const date = document.querySelector("#date");
 const tags = document.querySelector("#tag");
+const input = document.querySelector("#filtr");
+
+input.addEventListener("keyup", filtrLocalStorage);
 
 let newArray = [];
 let tagsArray = [];
+
+function filtrLocalStorage() {
+  newArray.forEach((element) => {
+    console.log(element);
+  });
+}
 
 function sort() {
   const allLocalStorageKeys = Object.keys(localStorage);
@@ -109,6 +118,8 @@ function displayFreshlyCreated(key) {
 
 function createNoteObject() {
   //console.log(fav.checked);
+  tagsArray = tags.value.split(" ");
+
   let note = new Note(
     title.value,
     content.value,
@@ -116,7 +127,7 @@ function createNoteObject() {
     PIN.value,
     fav.checked,
     date.value,
-    tags.value
+    tagsArray
   );
 
   const key = Date.now();
@@ -143,15 +154,19 @@ function editNote(key, id) {
   PIN.value = noteObject.PIN;
   fav.checked = noteObject.fav;
   date.value = noteObject.date;
+  tags.value = noteObject.tags;
 
   button.addEventListener("click", () => {
+    tagsArray = tags.value.split(" ");
+
     let note = new Note(
       title.value,
       content.value,
       noteColor.value,
       PIN.value,
       fav.checked,
-      date.value
+      date.value,
+      tagsArray
     );
 
     localStorage.setItem(key, JSON.stringify(note));

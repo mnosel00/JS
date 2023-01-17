@@ -1,0 +1,9 @@
+  #game-container {
+    border: 2px solid black;
+    width: 80%;
+    height: 300px; /* Change the height to 90% */
+    margin: auto;
+    position: relative;
+  }
+  
+  

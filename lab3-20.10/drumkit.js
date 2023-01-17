@@ -70,21 +70,22 @@ buttons.forEach((element) => {
       soundArray1.forEach((element, i) => {
         setTimeout(() => {
           playSound(element);
+          console.log("xx");
         }, i * 500);
       });
-    } else if (element.className === "sciezka1") {
+    } else if (element.className === "sciezka2") {
       soundArray2.forEach((element, i) => {
         setTimeout(() => {
           playSound(element);
         }, i * 500);
       });
-    } else if (element.className === "sciezka1") {
+    } else if (element.className === "sciezka3") {
       soundArray3.forEach((element, i) => {
         setTimeout(() => {
           playSound(element);
         }, i * 500);
       });
-    } else if (element.className === "sciezka1") {
+    } else if (element.className === "sciezka4") {
       soundArray4.forEach((element, i) => {
         setTimeout(() => {
           playSound(element);

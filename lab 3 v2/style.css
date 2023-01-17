@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.sciezka {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 1.2em;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#muzyka, #muzykaZWybranychKanalow {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 1.2em;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=checkbox] {
+    margin: 10px;
+}
+
+label {
+    margin-left: 10px;
+}
+
+audio {
+    margin: 20px;
+}

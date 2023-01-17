@@ -15,6 +15,8 @@ let velocityY = 0;
 function animate() {
   // Clear the canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // console.log(velocityX);
+  // console.log(velocityY);
 
   // Update the ball's position
   ballX += velocityX;

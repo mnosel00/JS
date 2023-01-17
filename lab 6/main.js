@@ -7,8 +7,8 @@ canvas.height = container.clientHeight;
 
 let ballX = canvas.width / 2;
 let ballY = canvas.height / 2;
-let holeX = Math.random() * canvas.width;
-let holeY = Math.random() * canvas.height;
+let holeX = Math.random() * (canvas.width - 50) + 25;
+let holeY = Math.random() * (canvas.height - 50) + 25;
 let velocityX = 0;
 let velocityY = 0;
 

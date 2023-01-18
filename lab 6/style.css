@@ -6,4 +6,8 @@
     position: relative;
   }
   
+  table {
+    background-color: lightgrey;
+    color: black;
+  }
   

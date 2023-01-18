@@ -1,5 +1,7 @@
 const container = document.getElementById("game-container");
 const canvas = document.getElementById("game-canvas");
+const scoreTable = document.getElementById("score-table");
+
 const ctx = canvas.getContext("2d");
 
 canvas.width = container.clientWidth;
@@ -82,9 +84,10 @@ intervalId = setInterval(() => {
   const scoreCell = document.createElement("td");
   scoreCell.innerHTML = score;
   row.appendChild(scoreCell);
+  scoreTable.appendChild(row);
 
   // Append the row to the table
   document.getElementById("score-table").appendChild(row);
 
   score = 0;
-}, 60000);
+}, 10000);

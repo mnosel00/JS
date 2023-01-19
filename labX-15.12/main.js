@@ -3,7 +3,7 @@ const pogodaCard = document.querySelector(".pogodaCard");
 
 const locationInput = document.querySelector("#location");
 
-const apiKey = "df2bf00f87e627058a8be4b13110d8b8";
+const apiKey = "083a0898e12d7ea19834268d9af0acd2";
 
 document.addEventListener("DOMContentLoaded", loadFromLocalStorage());
 
@@ -68,12 +68,12 @@ function createHTML(data, locationValue) {
   h1.id = "pogodaCardLocation";
   h1.innerHTML = `Location: ${locationValue}`;
 
-  let tempInFarenchait = data.main.temp;
-  let tempInCelcius = Math.round((tempInFarenchait - 32) * (5 / 9));
+  let tempInKelvin = data.main.temp;
+  let tempInCelcius = Math.round(tempInKelvin - 273.15);
 
   let pTemp = document.createElement("p");
   pTemp.id = "temp";
-  pTemp.innerHTML = `Temperature: ${tempInCelcius}`;
+  pTemp.innerHTML = `Temperature: ${tempInCelcius} ℃`;
 
   let humidity = data.main.humidity;
 
